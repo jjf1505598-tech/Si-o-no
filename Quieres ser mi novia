@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿Quieres ser mi novia?</title>
+  <style>
+    body {
+      background-color: #ffe6f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #ff4081;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      position: relative;
+      width: 300px;
+      height: 200px;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 10px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: absolute;
+    }
+
+    #si {
+      background-color: #ff69b4;
+      color: white;
+      left: 70px;
+      top: 100px;
+    }
+
+    #no {
+      background-color: #ccc;
+      color: #333;
+      right: 70px;
+      top: 100px;
+    }
+
+    #mensaje {
+      display: none;
+      font-size: 2rem;
+      color: #e91e63;
+      margin-top: 30px;
+      animation: aparecer 1s ease forwards;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿Quieres ser mi novia? 💖</h1>
+
+  <div class="buttons">
+    <button id="si">Sí 💞</button>
+    <button id="no">No 😅</button>
+  </div>
+
+  <div id="mensaje">🎉 ¡Felicidades! Ya somos novios 💕</div>
+
+  <script>
+    const btnSi = document.getElementById('si');
+    const btnNo = document.getElementById('no');
+    const mensaje = document.getElementById('mensaje');
+    const container = document.querySelector('.buttons');
+
+    let tamaño = 1;
+
+    // Hace que el botón "No" se mueva cuando el ratón se acerca
+    btnNo.addEventListener('mouseover', () => {
+      const x = Math.random() * (container.clientWidth - btnNo.offsetWidth);
+      const y = Math.random() * (container.clientHeight - btnNo.offsetHeight);
+      btnNo.style.left = `${x}px`;
+      btnNo.style.top = `${y}px`;
+
+      // Se hace más pequeño cada vez
+      tamaño -= 0.1;
+      if (tamaño <= 0.3) tamaño = 0.3;
+      btnNo.style.transform = `scale(${tamaño})`;
+    });
+
+    // Cuando presionan "Sí"
+    btnSi.addEventListener('click', () => {
+      container.style.display = 'none';
+      mensaje.style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
